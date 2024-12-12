@@ -7,9 +7,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
-import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
 
@@ -27,16 +25,9 @@ public class LabManagerApiApplication {
 	@Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI().info(new Info().title("Lab Manager API").version(apiVersion).description(
-                "[EA Portal Documentation]()"))
+                "[Documentation]()"))
                 .addServersItem(new Server().url("/lab-api"))
-                .schemaRequirement(apiVersion, null)
-                .components(new Components()
-                    .addSecuritySchemes("bearerAuth", new SecurityScheme()
-                        .type(SecurityScheme.Type.HTTP)
-                        .scheme("bearer")
-                        .bearerFormat("JWT")
-                        )
-                );
+                .schemaRequirement(apiVersion, null);
     }
 
     @Bean
